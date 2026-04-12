@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir /b \"c:\\\\Users\\\\Admin\\\\OneDrive\\\\projects\\\\site_vananh\\\\embedded_images\")",
+      "Bash(find /c /v \"\")",
+      "Bash(python3 -c \"from PIL import Image; import os; files = sorted\\([f for f in os.listdir\\('.'\\) if f.endswith\\(\\('.jpeg','.png'\\)\\)]\\); print\\(len\\(files\\)\\); print\\(files[:5]\\)\")",
+      "Bash(py -3 -c \"from PIL import Image; import os; files = sorted\\([f for f in os.listdir\\('.'\\) if f.endswith\\(\\('.jpeg','.png'\\)\\)]\\); print\\(len\\(files\\)\\); print\\(files[:5]\\)\")",
+      "Bash(python -c \"from PIL import Image; import os; files = sorted\\([f for f in os.listdir\\('.'\\) if f.endswith\\(\\('.jpeg','.png'\\)\\)]\\); print\\(len\\(files\\)\\); print\\(files[:5]\\)\")",
+      "Bash(py -3 -c ':*)",
+      "Bash(py -3 -c \"from PIL import Image; img=Image.open\\('page1_31.jpeg'\\); print\\(img.size, img.mode\\)\")",
+      "Bash(py -3)",
+      "Bash(identify /tmp/imgview/page1_31.jpeg)",
+      "Bash(python3 -c \"import os; print\\(os.listdir\\('/tmp'\\)\\)\")",
+      "Bash(cmd /c \"echo %TEMP%\")",
+      "Bash(py:*)",
+      "mcp__ide__executeCode",
+      "Read(//mnt/c/Users/Admin/OneDrive/projects/**)",
+      "Bash(find /home -name \"site_vananh\" -type d)",
+      "Bash(python3 -c ':*)",
+      "Read(//usr/**)",
+      "Read(//usr/local/**)",
+      "Bash(where.exe python:*)",
+      "Bash(\"C:/Users/Admin/AppData/Local/Microsoft/WindowsApps/python.exe\" extract_img.py)",
+      "Bash(/c/Windows/System32/wsl.exe which:*)",
+      "Bash(identify \"C:/Users/Admin/OneDrive/projects/site_vananh/embedded_images/page_01.png\")",
+      "Bash(pdftotext \"C:/Users/Admin/OneDrive/projects/site_vananh/Pham Thi Van Anh_Portfolio.pdf\" -)"
+    ]
+  }
+}
