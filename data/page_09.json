@@ -1,0 +1,43 @@
+{
+  "page": 9,
+  "file": "Business_Case_competition.png",
+  "section_type": "other",
+  "title": "Business Case Competitions & Awards",
+  "subtitle": "Recognition & Competition Track Record",
+  "content": {
+    "paragraphs": [
+      "Active participant in national and international business and marketing case competitions, consistently placing in top positions and demonstrating strategic thinking, presentation skills, and market insight under pressure."
+    ],
+    "bullets": [
+      "Best Delegate — Japan Youth Summit, Sustainable Business Idea Summit — 2024",
+      "Bronze Medal (3rd Place) — Kaohsiung International Invention & Design Expo — 2023",
+      "Top 3 / 1,200 — Vietnam Young Lion, Student Leagues (Most Prestigious Marketing Competition) — 2022",
+      "Top 3 / 1,400 — Hanh Trinh Kinh Doanh Business Case Study Competition — 2022",
+      "Co-founder — UYỂN Cultural Information Community — 2021–2022",
+      "Vice-Head of External Relations — HCM Communist Youth Union, Diplomatic Academy of Vietnam — 2020–2022"
+    ],
+    "labels": ["Awards", "Competitions", "Leadership", "Community"],
+    "metrics": [
+      { "label": "Young Lion Rank", "value": "Top 3/1,200" },
+      { "label": "Business Case Rank", "value": "Top 3/1,400" },
+      { "label": "Awards", "value": "4+" }
+    ]
+  },
+  "entities": {
+    "companies": [],
+    "brands": [],
+    "people": ["Pham Thi Van Anh"],
+    "locations": ["Vietnam", "Japan", "Taiwan (Kaohsiung)"],
+    "dates": ["2020", "2021", "2022", "2023", "2024"]
+  },
+  "campaign": null,
+  "design": {
+    "layout": "Achievement showcase with medal/trophy icons",
+    "components": ["Award badges", "Event names", "Rank badges", "Activity list"],
+    "visual_style": "Prestigious, celebratory, bold",
+    "color_palette": ["Black", "White", "Gold/Bronze", "Red"],
+    "typography": "Bold event names; clean result numbers",
+    "image_type": "text-heavy"
+  },
+  "summary": "Awards and competition record page showing 4+ achievements including Top 3/1,200 at Vietnam Young Lion, Top 3/1,400 at Hanh Trinh Kinh Doanh, Bronze at Kaohsiung Expo, and Best Delegate at Japan Youth Summit."
+}

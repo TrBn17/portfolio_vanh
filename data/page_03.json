@@ -1,0 +1,37 @@
+{
+  "page": 3,
+  "file": "Skills.png",
+  "section_type": "skills",
+  "title": "Skills",
+  "subtitle": "Marketing · Product · Data · Business · Tools",
+  "content": {
+    "paragraphs": [],
+    "bullets": [
+      "Marketing: Brand Strategy, Campaign Planning & Execution, Content Marketing, Social Media Marketing, SEO & SEM, Marketing Analytics, Media Management, Market Research, User Research, B2B Marketing, B2C Marketing, Influencer & KOL Marketing, Email Marketing, PR & Event Management",
+      "Product: Product Development, UI/UX Fundamentals, User Journey Mapping, Feature Prioritisation",
+      "Data: Python, Data Analysis",
+      "Business: Negotiation, Stakeholder Management, Business Development, CSR Strategy, Team Co-Management",
+      "Tools: Google Analytics, Google Ads, Meta Business Suite, LinkedIn Campaign Manager, AWS SES, HubSpot, Mailchimp, Canva, Microsoft Office, PowerPoint, Notion, Zoom, Hootsuite",
+      "Soft Skills: Communication, Coordination, Teamwork, Problem Solving, Organization"
+    ],
+    "labels": ["Marketing", "Product", "Data", "Business", "Tools"],
+    "metrics": []
+  },
+  "entities": {
+    "companies": [],
+    "brands": [],
+    "people": [],
+    "locations": [],
+    "dates": []
+  },
+  "campaign": null,
+  "design": {
+    "layout": "Categorized grid or tag cloud layout",
+    "components": ["Skill categories", "Skill tags/badges", "Icons per category"],
+    "visual_style": "Organized, visual, scannable",
+    "color_palette": ["Black", "White", "Red", "Grey"],
+    "typography": "Sans-serif; bold category headers",
+    "image_type": "text-heavy"
+  },
+  "summary": "Skills page categorizing Van Anh's competencies across marketing (brand strategy, campaigns, analytics, social media), product, data (Python), business, and a wide range of MarTech tools."
+}

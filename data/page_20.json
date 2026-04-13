@@ -1,0 +1,38 @@
+{
+  "page": 20,
+  "file": "Van_Anh.png",
+  "section_type": "introduction",
+  "title": "Pham Thi Van Anh",
+  "subtitle": "Digital Marketing Leader & Campaign Strategist",
+  "content": {
+    "paragraphs": [
+      "Contact: vananhcindy02@gmail.com | +65 81586466",
+      "LinkedIn: linkedin.com/in/pham-thi-van-anh",
+      "Available: April – December 2026 (Singapore Student Pass valid until Jan 2027)"
+    ],
+    "bullets": [
+      "Creative",
+      "Data-Driven",
+      "Results-Focused"
+    ],
+    "labels": ["Contact", "Available", "LinkedIn"],
+    "metrics": []
+  },
+  "entities": {
+    "companies": [],
+    "brands": [],
+    "people": ["Pham Thi Van Anh"],
+    "locations": ["Singapore"],
+    "dates": ["2026"]
+  },
+  "campaign": null,
+  "design": {
+    "layout": "Portrait/headshot with contact overlay",
+    "components": ["Professional headshot", "Name", "Contact details", "LinkedIn", "Availability status"],
+    "visual_style": "Clean, professional, approachable",
+    "color_palette": ["Black", "White", "Off-white background"],
+    "typography": "Clean sans-serif; contact details prominent",
+    "image_type": "hero"
+  },
+  "summary": "Contact/back page with Van Anh's professional headshot and full contact details — email, phone, LinkedIn, and availability window (April–December 2026, Singapore Student Pass valid to Jan 2027)."
+}

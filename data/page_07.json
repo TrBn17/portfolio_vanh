@@ -1,0 +1,44 @@
+{
+  "page": 7,
+  "file": "Darkhorsestocks_1.png",
+  "section_type": "experience",
+  "title": "DarkHorseStocks",
+  "subtitle": "Digital Marketing Project Manager | Jul 2024 – Jul 2025",
+  "content": {
+    "paragraphs": [
+      "Led digital marketing strategy for an international fintech/startup focused on data-driven small and micro-cap investment analytics. Managed multi-channel campaigns across social, email, LinkedIn, and WhatsApp for a global investor audience."
+    ],
+    "bullets": [
+      "Managed digital campaigns across multiple platforms to 15k+ Telegram, 7.6k Instagram, 5.2k Twitter",
+      "Analysed marketing campaign performance generating consumer trend insights and sales optimization recommendations",
+      "Built email marketing automation system using AWS SES and CI/CD infrastructure",
+      "Scaled LinkedIn subscriber base to 46,000+ and leveraged 35,000+ WhatsApp API network for marketing distribution",
+      "Built automated reporting dashboards using Excel and analytics tools"
+    ],
+    "labels": ["DarkHorseStocks", "Fintech", "Digital Marketing", "SaaS/Growth"],
+    "metrics": [
+      { "label": "LinkedIn Subscribers", "value": "46k+" },
+      { "label": "WhatsApp Network", "value": "35k+" },
+      { "label": "Telegram Community", "value": "15k+" },
+      { "label": "Instagram Followers", "value": "7.6k" },
+      { "label": "Twitter Followers", "value": "5.2k" }
+    ]
+  },
+  "entities": {
+    "companies": ["DarkHorseStocks"],
+    "brands": ["DarkHorseStocks"],
+    "people": [],
+    "locations": ["Singapore", "India"],
+    "dates": ["Jul 2024", "Jul 2025"]
+  },
+  "campaign": null,
+  "design": {
+    "layout": "Metric-dominant company spotlight",
+    "components": ["Company header", "Role + period", "Metric callouts", "Bullet highlights"],
+    "visual_style": "Growth-oriented, data-driven, bold",
+    "color_palette": ["Black", "White", "Green or teal accent", "Grey"],
+    "typography": "Large metric numbers; bold sans-serif",
+    "image_type": "infographic"
+  },
+  "summary": "DarkHorseStocks experience page (Jul 2024–Jul 2025) highlighting social media growth metrics: 46k+ LinkedIn, 35k+ WhatsApp, 15k+ Telegram, 7.6k Instagram, 5.2k Twitter, plus AWS SES email automation infrastructure."
+}

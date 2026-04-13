@@ -1,0 +1,44 @@
+{
+  "page": 6,
+  "file": "Work_exp_Dell_tech2.png",
+  "section_type": "experience",
+  "title": "Dell Technologies — Campaign Highlights",
+  "subtitle": "Content, Webinars & Event Management",
+  "content": {
+    "paragraphs": [
+      "Deep-dive into the content production and event management scope of the Dell OEM marketing role, covering multi-format content creation, webinar program management, and international event coordination."
+    ],
+    "bullets": [
+      "Produced website content, email marketing campaigns, PR content and social media assets for Dell OEM Vietnam",
+      "Organised and executed monthly webinars exceeding KPI targets by 120%",
+      "Tracked campaign performance processing data from 1,000+ calls per week",
+      "Analysed ~100 VIP customer records for weekly reporting to regional leadership",
+      "Supported international Dell events in Vietnam and Singapore with 450+ global participants",
+      "Collaborated with APAC regional teams on campaign localisation and go-to-market planning"
+    ],
+    "labels": ["Content Production", "Webinar Management", "Event Coordination", "APAC"],
+    "metrics": [
+      { "label": "KPI Overachievement", "value": "120%" },
+      { "label": "Data Records Analysed", "value": "~100/week" },
+      { "label": "Events Supported", "value": "2+" },
+      { "label": "Countries", "value": "2" }
+    ]
+  },
+  "entities": {
+    "companies": ["Dell Technologies"],
+    "brands": ["Dell"],
+    "people": [],
+    "locations": ["Singapore", "Vietnam"],
+    "dates": ["Apr 2022", "Apr 2023"]
+  },
+  "campaign": null,
+  "design": {
+    "layout": "Two-column or metric-highlight layout",
+    "components": ["Section header", "Content pillars", "Metric highlights", "Supporting details"],
+    "visual_style": "Detailed, structured, professional",
+    "color_palette": ["Black", "White", "Grey", "Dell Red"],
+    "typography": "Sans-serif; metric values prominent",
+    "image_type": "text-heavy"
+  },
+  "summary": "Second Dell Technologies page focused on campaign highlights: content production, webinar program (120% KPI overachievement), VIP data analysis, and international event support across Vietnam and Singapore."
+}

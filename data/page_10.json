@@ -1,0 +1,53 @@
+{
+  "page": 10,
+  "file": "Sephora_project.png",
+  "section_type": "campaign",
+  "title": "Soirée by Sephora",
+  "subtitle": "Brand Launch Campaign | 2024",
+  "content": {
+    "paragraphs": [
+      "Campaign concept for Sephora's nightwear collection launch. Developed moodboard, brand narrative, and event concept for a premium evening experience targeting beauty enthusiasts and fashion-conscious consumers in Vietnam."
+    ],
+    "bullets": [
+      "Positioned the collection around luxury self-care rituals, creating a 'Soirée' (evening party) concept",
+      "Transformed a product launch into an aspirational lifestyle moment",
+      "Developed moodboard and visual direction for the campaign",
+      "Designed KOL/influencer activation plan targeting beauty and fashion micro-influencers",
+      "Created social media content calendar aligned with launch timeline",
+      "Developed event concept and guest journey for the physical activation"
+    ],
+    "labels": ["Sephora", "Brand Launch", "Nightwear", "Vietnam"],
+    "metrics": []
+  },
+  "entities": {
+    "companies": ["Sephora"],
+    "brands": ["Sephora"],
+    "people": [],
+    "locations": ["Vietnam"],
+    "dates": ["2024"]
+  },
+  "campaign": {
+    "name": "Soirée by Sephora",
+    "objective": "Launch Sephora's nightwear collection with a premium brand experience that differentiates in a competitive beauty retail market",
+    "target_audience": "Beauty enthusiasts, fashion-conscious consumers, luxury self-care seekers in Vietnam",
+    "insight": "Nightwear as a self-care ritual — a moment of personal indulgence that elevates everyday life",
+    "strategy": [
+      "Position collection around luxury self-care rituals",
+      "Create 'Soirée' (evening party) narrative framing product launch as aspirational lifestyle",
+      "KOL/influencer activation with beauty and fashion creators",
+      "Premium event activation with curated guest journey",
+      "Social media content calendar building anticipation"
+    ],
+    "channels": ["Instagram", "TikTok", "KOL/Influencer", "Event/Live Activation", "PR"],
+    "results": ["Moodboard and visual direction", "Campaign tagline: 'An evening to remember'", "Event concept and guest journey", "KOL activation plan", "Social media content calendar"]
+  },
+  "design": {
+    "layout": "Campaign case study layout",
+    "components": ["Campaign name", "Brand logo", "Moodboard imagery", "Strategy pillars", "Channel list"],
+    "visual_style": "Luxury, editorial, feminine, premium",
+    "color_palette": ["Black", "Gold", "Blush Pink", "White"],
+    "typography": "Elegant serif headings; refined sans-serif body",
+    "image_type": "mockup"
+  },
+  "summary": "Sephora 'Soirée' campaign concept for nightwear collection launch — positioned around luxury self-care rituals with premium event activation, KOL strategy, and aspirational lifestyle narrative."
+}

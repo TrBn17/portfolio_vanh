@@ -1,0 +1,45 @@
+{
+  "page": 19,
+  "file": "list_campaign.png",
+  "section_type": "other",
+  "title": "Campaign Portfolio Overview",
+  "subtitle": "Brand & Growth Marketing Projects",
+  "content": {
+    "paragraphs": [
+      "Summary overview of Van Anh's campaign portfolio spanning brand launches, social campaigns, growth marketing, and strategic market development across multiple industries and formats."
+    ],
+    "bullets": [
+      "Soirée by Sephora — Brand Launch, Nightwear Collection, Vietnam (2024)",
+      "AB InBev Market Share Expansion — Market Penetration, Beer Portfolio, Vietnam (2024)",
+      "MoMo Super App Growth — Product & Growth Marketing, E-wallet, Vietnam (2024)",
+      "Violent vs. Compassionate Communication Framework — CSR/Strategy (2024)",
+      "Dyson Love Edition 2026 — Brand Campaign, Home Appliances, Vietnam (2026)",
+      "PNJ × TikTok 'Discover My Character' — Social Campaign, Jewellery, Vietnam (2023)",
+      "NFT Market Development — New Market Strategy, Vietnam (2023)",
+      "Glaze New Product Launch — Growth & Launch, Multi-category (2023)",
+      "Last Bite Best Bite — Brand MVP, Airport Food, Vietnam (2023)"
+    ],
+    "labels": ["Brand Launch", "Social Campaign", "Growth Marketing", "Market Strategy", "MVP"],
+    "metrics": [
+      { "label": "Total Campaigns", "value": "9" },
+      { "label": "Industries", "value": "7+" }
+    ]
+  },
+  "entities": {
+    "companies": ["Sephora", "AB InBev", "MoMo", "Dyson", "PNJ", "TikTok"],
+    "brands": ["Sephora", "AB InBev", "MoMo", "Dyson", "PNJ"],
+    "people": [],
+    "locations": ["Vietnam"],
+    "dates": ["2023", "2024", "2026"]
+  },
+  "campaign": null,
+  "design": {
+    "layout": "Portfolio grid or list view",
+    "components": ["Campaign names", "Category tags", "Brand logos", "Year labels"],
+    "visual_style": "Clean, scannable, organized",
+    "color_palette": ["Black", "White", "Grey", "Red accent"],
+    "typography": "Sans-serif; bold campaign names",
+    "image_type": "text-heavy"
+  },
+  "summary": "Campaign portfolio overview listing 9 marketing projects across brand launch, social, growth, and market strategy — spanning Sephora, AB InBev, MoMo, Dyson, PNJ, and more across Vietnam (2023–2026)."
+}
