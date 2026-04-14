@@ -58,7 +58,6 @@ coverage/
 
 extracted_images/
 CV_extracted/
-data/
 *.zip
 *.pdf
 CV.docx
