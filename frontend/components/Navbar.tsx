@@ -26,7 +26,6 @@ export default function Navbar() {
       const docH = document.documentElement.scrollHeight - window.innerHeight;
       setScrollProgress(docH > 0 ? (y / docH) * 100 : 0);
 
-      // Active section detection
       const sections = NAV_LINKS.map((l) => l.href.slice(1));
       let current = "";
       for (const id of sections) {
@@ -48,8 +47,8 @@ export default function Navbar() {
     <nav
       className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "border-b border-black/5 bg-white/88 shadow-[0_12px_32px_rgba(13,13,13,0.08)] backdrop-blur-xl"
-          : "bg-white/72 backdrop-blur-md"
+          ? "bg-brand-black/95 backdrop-blur-md border-b border-white/10 shadow-[0_4px_32px_rgba(0,0,0,0.4)]"
+          : "bg-brand-black/80 backdrop-blur-sm"
       }`}
     >
       {/* Scroll progress bar */}
@@ -59,15 +58,11 @@ export default function Navbar() {
       />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div
-          className={`flex items-center justify-between transition-all duration-500 ${
-            scrolled ? "h-14" : "h-16"
-          }`}
-        >
+        <div className={`flex items-center justify-between transition-all duration-500 ${scrolled ? "h-14" : "h-16"}`}>
           {/* Logo */}
           <a
             href="#about"
-            className="font-serif text-lg font-bold tracking-tight text-brand-black transition-all duration-300 hover:scale-[1.03] hover:text-brand-red"
+            className="font-serif text-lg font-bold tracking-tight text-white transition-all duration-300 hover:scale-[1.03]"
           >
             VA<span className="text-brand-red">.</span>
           </a>
@@ -78,10 +73,8 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className={`nav-underline text-sm font-medium transition-colors duration-300 hover:text-brand-black uppercase tracking-wide ${
-                  activeSection === link.href.slice(1)
-                    ? "text-brand-red active"
-                    : "text-brand-grey"
+                className={`nav-underline text-sm font-medium transition-colors duration-300 hover:text-white/80 uppercase tracking-wide ${
+                  activeSection === link.href.slice(1) ? "text-white active" : "text-white/80"
                 }`}
               >
                 {link.label}
@@ -93,12 +86,12 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             <a
               href="#contact"
-              className="hidden md:inline-flex items-center bg-brand-red text-white px-5 py-2 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:bg-brand-black magnetic"
+              className="hidden md:inline-flex items-center bg-brand-red text-white px-5 py-2 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-brand-red magnetic"
             >
               Get in Touch
             </a>
             <button
-              className="md:hidden p-2 text-brand-black transition-transform duration-300 hover:scale-105"
+              className="md:hidden p-2 text-white transition-transform duration-300 hover:scale-105"
               onClick={() => setMobileOpen((prev) => !prev)}
               aria-label="Toggle menu"
             >
@@ -121,13 +114,13 @@ export default function Navbar() {
               : "max-h-0 opacity-0 -translate-y-2"
           }`}
         >
-          <div className="mb-4 rounded-2xl border border-brand-lightgrey bg-white/95 py-3 shadow-[0_16px_40px_rgba(13,13,13,0.08)]">
+          <div className="mb-4 rounded-2xl border border-white/10 bg-brand-black/95 py-3 shadow-[0_16px_40px_rgba(0,0,0,0.4)]">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 className={`block px-4 py-3 text-sm font-medium transition-colors uppercase tracking-wide ${
-                  activeSection === link.href.slice(1) ? "text-brand-red" : "text-brand-black hover:text-brand-red"
+                  activeSection === link.href.slice(1) ? "text-white font-semibold" : "text-white/70 hover:text-white"
                 }`}
                 onClick={() => setMobileOpen(false)}
               >
@@ -137,7 +130,7 @@ export default function Navbar() {
             <div className="pt-2 px-4">
               <a
                 href="#contact"
-                className="block w-full bg-brand-red text-white text-center px-5 py-3 text-sm font-semibold transition-colors hover:bg-brand-black"
+                className="block w-full bg-brand-red text-white text-center px-5 py-3 text-sm font-semibold transition-colors hover:bg-white hover:text-brand-red"
                 onClick={() => setMobileOpen(false)}
               >
                 Get in Touch

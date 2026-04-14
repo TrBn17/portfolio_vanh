@@ -64,8 +64,7 @@ function AnimatedCounter({
   return (
     <div
       ref={ref}
-      className="text-3xl font-serif font-bold text-brand-red counter-pop"
-      style={visible ? {} : { opacity: 0 }}
+      className={`text-3xl font-serif font-bold text-brand-red counter-pop ${visible ? "is-visible" : ""}`}
     >
       {display}
     </div>
