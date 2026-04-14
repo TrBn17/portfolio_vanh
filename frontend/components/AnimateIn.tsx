@@ -1,27 +1,37 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 interface AnimateInProps {
-  children: React.ReactNode;
+  children: ReactNode;
   from?: string;
   to?: string;
   delay?: number;
   className?: string;
-  /** Animate each direct child separately as it enters the viewport */
   staggerChildren?: boolean;
-  /** Gap in ms between each child's animation (default 80) */
   staggerDelay?: number;
 }
 
-/**
- * Scroll-triggered fade + slide-up entrance animation.
- * SSR-safe: starts hidden, animates in after mount when element enters viewport.
- * Respects prefers-reduced-motion: no animation, content visible immediately.
- *
- * With staggerChildren=true, each direct child element gets its own
- * scroll-triggered animation so content reveals progressively as you scroll.
- */
+const parseMotionClasses = (input: string) => {
+  const classes = input.split(/\s+/).filter(Boolean);
+  const style: CSSProperties = {};
+
+  for (const token of classes) {
+    if (token === "opacity-0") style.opacity = 0;
+    if (token === "opacity-100") style.opacity = 1;
+    if (token === "translate-y-0") style.transform = "translate3d(0, 0, 0)";
+    if (token === "translate-y-3") style.transform = "translate3d(0, 0.75rem, 0)";
+    if (token === "translate-y-4") style.transform = "translate3d(0, 1rem, 0)";
+    if (token === "translate-y-5") style.transform = "translate3d(0, 1.25rem, 0)";
+    if (token === "-translate-y-3") style.transform = "translate3d(0, -0.75rem, 0)";
+    if (token === "scale-[0.98]") style.transform = "scale(0.98)";
+    if (token === "scale-100") style.transform = "scale(1)";
+  }
+
+  return style;
+};
+
 export default function AnimateIn({
   children,
   from = "opacity-0 translate-y-5",
@@ -29,85 +39,83 @@ export default function AnimateIn({
   delay = 0,
   className = "",
   staggerChildren = false,
-  staggerDelay = 80,
+  staggerDelay = 90,
 }: AnimateInProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const [prefersReduced, setPrefersReduced] = useState(false);
 
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReduced(mq.matches);
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const onChange = (event: MediaQueryListEvent) => setPrefersReduced(event.matches);
 
-    if (mq.matches) {
+    setPrefersReduced(mediaQuery.matches);
+    mediaQuery.addEventListener("change", onChange);
+
+    if (mediaQuery.matches) {
       setVisible(true);
-      return;
+      return () => mediaQuery.removeEventListener("change", onChange);
     }
 
-    if (staggerChildren) {
-      // Stagger children individually
-      const container = ref.current;
-      if (!container) return;
-
-      const childEls = Array.from(container.children) as HTMLElement[];
-
-      // Start all children hidden
-      childEls.forEach((child) => {
-        child.className = `${from} ${child.className}`;
-      });
-
-      const observers: IntersectionObserver[] = [];
-
-      childEls.forEach((child, i) => {
-        const obs = new IntersectionObserver(
-          ([entry]) => {
-            if (entry.isIntersecting) {
-              // Apply animation with staggered delay
-              const targetDelay = delay + i * staggerDelay;
-              child.style.transition = `opacity 0.45s ease-out ${targetDelay}ms, transform 0.45s ease-out ${targetDelay}ms`;
-              child.className = `${to} ${child.className}`;
-              obs.disconnect();
-            }
-          },
-          { threshold: 0.05, rootMargin: "0px 0px -30px 0px" }
-        );
-        obs.observe(child);
-        observers.push(obs);
-      });
-
-      return () => observers.forEach((o) => o.disconnect());
-    } else {
-      // Animate the whole wrapper
-      const el = ref.current;
-      if (!el) return;
-
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            observer.disconnect();
-          }
-        },
-        { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
-      );
-
-      observer.observe(el);
-      return () => observer.disconnect();
+    const element = ref.current;
+    if (!element) {
+      return () => mediaQuery.removeEventListener("change", onChange);
     }
-  }, [from, to, delay, staggerChildren, staggerDelay]);
 
-  const transitionStyle = prefersReduced
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -10% 0px",
+      }
+    );
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+      mediaQuery.removeEventListener("change", onChange);
+    };
+  }, []);
+
+  const fromStyle = parseMotionClasses(from);
+  const toStyle = parseMotionClasses(to);
+  const transitionBase = prefersReduced
     ? "none"
-    : `opacity 0.5s ease-out ${delay}ms, transform 0.5s ease-out ${delay}ms`;
+    : "opacity 720ms cubic-bezier(0.22, 1, 0.36, 1), transform 720ms cubic-bezier(0.22, 1, 0.36, 1)";
 
   if (staggerChildren) {
+    const items = Array.isArray(children) ? children : [children];
+
     return (
-      <div
-        ref={ref}
-        className={className}
-        style={{ transition: prefersReduced ? "none" : undefined }}
-      >
-        {children}
+      <div ref={ref} className={className}>
+        {items.map((child, index) => (
+          <div
+            key={index}
+            style={
+              visible || prefersReduced
+                ? {
+                    ...toStyle,
+                    transition: transitionBase,
+                    transitionDelay: `${delay + index * staggerDelay}ms`,
+                    willChange: "opacity, transform",
+                  }
+                : {
+                    ...fromStyle,
+                    transition: transitionBase,
+                    transitionDelay: `${delay + index * staggerDelay}ms`,
+                    willChange: "opacity, transform",
+                  }
+            }
+          >
+            {child}
+          </div>
+        ))}
       </div>
     );
   }
@@ -116,11 +124,23 @@ export default function AnimateIn({
     <div
       ref={ref}
       className={className}
-      style={{ transition: transitionStyle }}
+      style={
+        visible || prefersReduced
+          ? {
+              ...toStyle,
+              transition: transitionBase,
+              transitionDelay: `${delay}ms`,
+              willChange: "opacity, transform",
+            }
+          : {
+              ...fromStyle,
+              transition: transitionBase,
+              transitionDelay: `${delay}ms`,
+              willChange: "opacity, transform",
+            }
+      }
     >
-      <div className={visible ? to : from} aria-hidden={!visible}>
-        {children}
-      </div>
+      {children}
     </div>
   );
 }

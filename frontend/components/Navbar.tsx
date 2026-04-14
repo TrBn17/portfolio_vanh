@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const NAV_LINKS = [
   { label: "About", href: "#about" },
@@ -14,43 +14,55 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-brand-lightgrey shadow-sm">
+    <nav
+      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "border-b border-black/5 bg-white/86 shadow-[0_12px_32px_rgba(13,13,13,0.08)] backdrop-blur-xl"
+          : "bg-white/72 backdrop-blur-md"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+        <div className={`flex items-center justify-between transition-all duration-500 ${scrolled ? "h-14" : "h-16"}`}>
           <a
             href="#about"
-            className="font-serif text-lg font-bold tracking-tight text-brand-black"
+            className="font-serif text-lg font-bold tracking-tight text-brand-black transition-transform duration-300 hover:scale-[1.02]"
           >
             VA<span className="text-brand-red">.</span>
           </a>
 
-          {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-brand-grey hover:text-brand-black transition-colors tracking-wide uppercase"
+                className="text-sm font-medium text-brand-grey transition-colors duration-300 hover:text-brand-black tracking-wide uppercase"
               >
                 {link.label}
               </a>
             ))}
           </div>
 
-          {/* CTA + Mobile Toggle */}
           <div className="flex items-center gap-4">
             <a
               href="#contact"
-              className="hidden md:inline-block bg-brand-red text-white px-5 py-2 text-sm font-semibold hover:bg-black transition-colors"
+              className="hidden md:inline-flex items-center bg-brand-red text-white px-5 py-2 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:bg-black"
             >
               Get in Touch
             </a>
             <button
-              className="md:hidden p-2 text-brand-black"
-              onClick={() => setMobileOpen(!mobileOpen)}
+              className="md:hidden p-2 text-brand-black transition-transform duration-300 hover:scale-105"
+              onClick={() => setMobileOpen((prev) => !prev)}
               aria-label="Toggle menu"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -64,14 +76,17 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        {mobileOpen && (
-          <div className="md:hidden bg-white border-t border-brand-lightgrey py-4 space-y-1">
+        <div
+          className={`md:hidden overflow-hidden transition-[max-height,opacity,transform] duration-500 ${
+            mobileOpen ? "max-h-[28rem] opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-2"
+          }`}
+        >
+          <div className="mb-4 rounded-2xl border border-brand-lightgrey bg-white/95 py-3 shadow-[0_16px_40px_rgba(13,13,13,0.08)]">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="block px-4 py-3 text-sm font-medium text-brand-black hover:text-brand-red transition-colors uppercase tracking-wide"
+                className="block px-4 py-3 text-sm font-medium text-brand-black transition-colors hover:text-brand-red uppercase tracking-wide"
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
@@ -80,14 +95,14 @@ export default function Navbar() {
             <div className="pt-2 px-4">
               <a
                 href="#contact"
-                className="block w-full bg-brand-red text-white text-center px-5 py-3 text-sm font-semibold hover:bg-black transition-colors"
+                className="block w-full bg-brand-red text-white text-center px-5 py-3 text-sm font-semibold transition-colors hover:bg-black"
                 onClick={() => setMobileOpen(false)}
               >
                 Get in Touch
               </a>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );
