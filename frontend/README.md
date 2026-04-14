@@ -60,13 +60,7 @@ npm install
 
 ### 2. Configure environment variables
 
-Copy the example env file and add your OpenRouter API key:
-
-```bash
-cp .env.local.example .env.local
-```
-
-Open `.env.local` and fill in:
+Use `frontend/.env` and fill in:
 
 ```bash
 OPENROUTER_API_KEY=your_api_key_here
@@ -84,11 +78,23 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000)
 
+If Next.js cache gets stuck on Windows/OneDrive, use:
+
+```bash
+npm run dev:clean
+```
+
 ### 4. Build for production
 
 ```bash
 npm run build
 npm start
+```
+
+If build cache is corrupted, use:
+
+```bash
+npm run build:clean
 ```
 
 ## Deploy To Vercel
@@ -209,7 +215,7 @@ All content is in TypeScript component files in `/frontend/components/`. To upda
 
 ### Changing the model
 
-Edit `.env.local`:
+Edit `.env`:
 
 ```bash
 OPENROUTER_MODEL=anthropic/claude-3-haiku
