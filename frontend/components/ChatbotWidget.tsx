@@ -21,13 +21,13 @@ function getTime() {
 
 function AssistantBubble({ text }: { text: string }) {
   return (
-    <div className="max-w-[88%] rounded-2xl rounded-bl-md border border-white/80 bg-white px-4 py-3 text-sm leading-[1.65] text-brand-black shadow-sm">
+    <div className="max-w-[82%] rounded-2xl rounded-bl-md border border-brand-lightgrey/60 bg-white px-4 py-3 text-sm leading-[1.65] text-brand-black shadow-sm">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
           p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
-          h1: ({ children }) => <h1 className="mt-3 mb-1 text-base font-serif font-bold text-brand-black">{children}</h1>,
-          h2: ({ children }) => <h2 className="mt-3 mb-1 text-sm font-serif font-bold text-brand-black">{children}</h2>,
+          h1: ({ children }) => <h1 className="mt-2 mb-1 text-base font-serif font-bold text-brand-black">{children}</h1>,
+          h2: ({ children }) => <h2 className="mt-2 mb-1 text-sm font-serif font-bold text-brand-black">{children}</h2>,
           h3: ({ children }) => <h3 className="mt-2 mb-1 text-sm font-bold text-brand-black">{children}</h3>,
           strong: ({ children }) => <strong className="font-semibold text-brand-black">{children}</strong>,
           em: ({ children }) => <em className="italic text-brand-grey">{children}</em>,
@@ -76,7 +76,6 @@ export default function ChatbotWidget() {
   const [error, setError] = useState<string | null>(null);
   const [streamingText, setStreamingText] = useState("");
   const [sessionStarted, setSessionStarted] = useState(false);
-  const [hasConversation, setHasConversation] = useState(false);
 
   const bottomRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -107,7 +106,6 @@ export default function ChatbotWidget() {
       setError(null);
       setStreamingText("");
       setLoading(true);
-      setHasConversation(true);
       setMessages((prev) => [...prev, { id: "streaming", role: "assistant", text: "", time: getTime() }]);
 
       try {
@@ -249,18 +247,18 @@ export default function ChatbotWidget() {
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto bg-neutral-50/80 px-5 py-3">
+          <div className="flex-1 overflow-y-auto bg-white px-5 py-4">
             {messages.map((msg) => (
-              <div key={msg.id} className={`group mb-3 flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-                <div className={`flex max-w-[88%] flex-col ${msg.role === "user" ? "items-end" : "items-start"}`}>
+              <div key={msg.id} className={`mb-3 flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+                <div className={`flex max-w-[82%] flex-col ${msg.role === "user" ? "items-end" : "items-start"}`}>
                   {msg.role === "user" ? (
-                    <div className="rounded-2xl rounded-br-md bg-brand-red px-4 py-3 text-sm leading-[1.65] text-white shadow-sm">
+                    <div className="rounded-2xl rounded-br-md bg-brand-red px-4 py-2.5 text-sm leading-[1.6] text-white">
                       {msg.text}
                     </div>
                   ) : (
                     <AssistantBubble text={msg.text} />
                   )}
-                  <span className="mt-1 px-1 text-[10px] text-brand-grey/70 opacity-0 transition-opacity group-hover:opacity-100">
+                  <span className="mt-0.5 px-1 text-[10px] text-brand-grey/50 opacity-0 transition-opacity group-hover:opacity-100">
                     {msg.time}
                   </span>
                 </div>
@@ -269,7 +267,7 @@ export default function ChatbotWidget() {
 
             {loading && streamingText === "" && messages[messages.length - 1]?.id === "streaming" && (
               <div className="mb-3 flex justify-start">
-                <div className="rounded-2xl rounded-bl-md border border-white/80 bg-white px-4 py-3 shadow-sm">
+                <div className="rounded-2xl rounded-bl-md border border-brand-lightgrey/60 bg-white px-4 py-2.5 shadow-sm">
                   <TypingIndicator />
                 </div>
               </div>
@@ -290,17 +288,16 @@ export default function ChatbotWidget() {
             <div ref={bottomRef} />
           </div>
 
-          {!loading && (
-            <div className="shrink-0 border-t border-brand-lightgrey/60 bg-white px-5 py-3">
-              <div className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-grey">
-                Suggested questions
-              </div>
-              <div className="flex flex-wrap gap-2">
+          {/* Quick topics — only when session is fresh */}
+          {!loading && messages.length <= 2 && (
+            <div className="shrink-0 border-t border-brand-lightgrey/50 bg-white px-4 py-2">
+              <div className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-grey/60">Quick</div>
+              <div className="flex flex-wrap gap-1.5">
                 {TOPICS.map((topic) => (
                   <button
                     key={topic.label}
                     onClick={() => sendMessage(topic.prompt)}
-                    className="rounded-full border border-brand-lightgrey bg-white px-3 py-1.5 text-left text-xs text-brand-black transition-colors hover:border-brand-red hover:text-brand-red"
+                    className="rounded-full border border-brand-lightgrey/60 bg-neutral-50 px-3 py-1 text-left text-xs text-brand-grey transition-colors hover:border-brand-red hover:text-brand-red"
                   >
                     {topic.label}
                   </button>
@@ -309,7 +306,8 @@ export default function ChatbotWidget() {
             </div>
           )}
 
-          <div className="shrink-0 border-t border-brand-lightgrey/60 bg-white px-4 py-3">
+          {/* Input */}
+          <div className="shrink-0 border-t border-brand-lightgrey/50 bg-white px-4 py-3">
             <div className="flex items-end gap-2 rounded-2xl border border-brand-lightgrey bg-neutral-50 px-3 py-2 transition-colors focus-within:border-brand-red">
               <textarea
                 ref={textareaRef}
@@ -323,11 +321,6 @@ export default function ChatbotWidget() {
                 disabled={loading}
                 maxLength={1000}
               />
-              {input.length > 800 && (
-                <span className={`mb-0.5 shrink-0 text-[10px] ${input.length >= 1000 ? "text-red-500" : "text-brand-grey"}`}>
-                  {1000 - input.length}
-                </span>
-              )}
               <button
                 onClick={() => sendMessage(input)}
                 disabled={!input.trim() || loading}
@@ -339,9 +332,6 @@ export default function ChatbotWidget() {
                 </svg>
               </button>
             </div>
-            <p className="mt-1.5 text-center text-[10px] text-brand-grey/60">
-              AI-powered · Grounded on portfolio data · {new Date().getFullYear()}
-            </p>
           </div>
         </div>
       )}

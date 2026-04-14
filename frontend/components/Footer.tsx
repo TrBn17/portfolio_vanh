@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="py-8 bg-brand-black border-t border-neutral-800">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <a href="#about" className="font-serif text-lg font-bold text-white hover:text-brand-red transition-colors">
+          <a href="#about" className="text-sm font-semibold uppercase tracking-[0.2em] text-white hover:text-brand-red transition-colors">
             VA<span className="text-brand-red">.</span>
           </a>
 

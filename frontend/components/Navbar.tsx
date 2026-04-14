@@ -62,7 +62,7 @@ export default function Navbar() {
           {/* Logo */}
           <a
             href="#about"
-            className="font-serif text-lg font-bold tracking-tight text-white transition-all duration-300 hover:scale-[1.03]"
+            className="text-base font-semibold uppercase tracking-[0.2em] text-white transition-all duration-300 hover:scale-[1.03]"
           >
             VA<span className="text-brand-red">.</span>
           </a>
