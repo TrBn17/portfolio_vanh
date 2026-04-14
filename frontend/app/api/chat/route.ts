@@ -11,10 +11,11 @@ function json(body: Record<string, unknown>, status: number) {
 export async function POST(req: NextRequest) {
   let message: string;
   let model: string | undefined;
+  let openRouterApiKey: string | undefined;
 
   try {
     const body = await req.json();
-    ({ message, model } = body);
+    ({ message, model, openRouterApiKey } = body);
   } catch {
     return json({ error: "Invalid request body." }, 400);
   }
@@ -23,15 +24,18 @@ export async function POST(req: NextRequest) {
     return json({ error: "Message is required." }, 400);
   }
 
-  const apiKey = process.env.OPENROUTER_API_KEY;
+  const apiKey = openRouterApiKey?.trim() || process.env.OPENROUTER_API_KEY;
   if (!apiKey) {
     return json(
-      { error: "OpenRouter API key not configured. Set OPENROUTER_API_KEY in .env.local." },
+      {
+        error:
+          "OpenRouter API key not configured. Add one in the chat settings or set OPENROUTER_API_KEY on the server.",
+      },
       503
     );
   }
 
-  const modelId = model || process.env.OPENROUTER_MODEL || "gpt-oss-20b";
+  const modelId = model?.trim() || process.env.OPENROUTER_MODEL || "openrouter/auto";
   const groundedPrompt = buildGroundedPrompt(message);
   const encoder = new TextEncoder();
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim() || req.nextUrl.origin;
@@ -69,7 +73,12 @@ export async function POST(req: NextRequest) {
       if (!upstreamRes.ok) {
         const detail = await upstreamRes.text();
         controller.enqueue(
-          encoder.encode(`data: ${JSON.stringify({ error: "AI request failed.", detail })}\n\n`)
+          encoder.encode(
+            `data: ${JSON.stringify({
+              error: "AI request failed.",
+              detail: detail.slice(0, 800),
+            })}\n\n`
+          )
         );
         controller.close();
         return;

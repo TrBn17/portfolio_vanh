@@ -6,16 +6,14 @@ import remarkGfm from "remark-gfm";
 
 type Message = { role: "user" | "assistant"; text: string };
 
-// ── Constants ──────────────────────────────────────────────────────────────────
-
 const WELCOME = `Hey! I'm Van Anh. 👋
 
-Think of this as a conversation with me — ask me anything about my background, campaigns, skills, or availability.
+Think of this as a conversation with me - ask me anything about my background, campaigns, skills, or availability.
 
 Here's what I can help with:`;
 
 const GUIDE_TOPICS = [
-  { label: "My background & story", icon: "🧑‍💼" },
+  { label: "My background & story", icon: "👩‍💼" },
   { label: "Experience at a company", icon: "💼" },
   { label: "Campaigns I've led", icon: "🎯" },
   { label: "Skills & strengths", icon: "⚡" },
@@ -36,32 +34,25 @@ function AssistantBubble({ text }: { text: string }) {
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
-          // Paragraphs
           p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
-          // Headings
           h1: ({ children }) => <h1 className="text-lg font-bold font-serif text-brand-black mt-3 mb-1 first:mt-0">{children}</h1>,
           h2: ({ children }) => <h2 className="text-base font-bold font-serif text-brand-black mt-3 mb-1 first:mt-0">{children}</h2>,
           h3: ({ children }) => <h3 className="text-sm font-bold text-brand-black mt-2 mb-1 first:mt-0">{children}</h3>,
-          // Bold / italic
           strong: ({ children }) => <strong className="font-semibold text-brand-black">{children}</strong>,
           em: ({ children }) => <em className="italic text-brand-grey">{children}</em>,
-          // Inline code
           code: ({ children }) => (
             <code className="bg-neutral-100 text-brand-red text-xs px-1.5 py-0.5 rounded font-mono">
               {children}
             </code>
           ),
-          // Code blocks
           pre: ({ children }) => (
             <pre className="bg-neutral-100 border border-brand-lightgrey text-brand-black text-xs p-3 rounded-lg overflow-x-auto mt-2 mb-2">
               {children}
             </pre>
           ),
-          // Lists
           ul: ({ children }) => <ul className="list-disc pl-5 mb-2 space-y-1">{children}</ul>,
           ol: ({ children }) => <ol className="list-decimal pl-5 mb-2 space-y-1">{children}</ol>,
           li: ({ children }) => <li className="text-brand-black">{children}</li>,
-          // Links
           a: ({ href, children }) => (
             <a
               href={href}
@@ -72,13 +63,11 @@ function AssistantBubble({ text }: { text: string }) {
               {children}
             </a>
           ),
-          // Blockquote
           blockquote: ({ children }) => (
             <blockquote className="border-l-2 border-brand-red pl-3 italic text-brand-grey mt-2 mb-2">
               {children}
             </blockquote>
           ),
-          // Horizontal rule
           hr: () => <hr className="border-brand-lightgrey my-3" />,
         }}
       >
@@ -101,7 +90,7 @@ export default function ChatbotWidget() {
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  }, [messages, assistantStream, error]);
 
   useEffect(() => {
     if (open && inputRef.current) inputRef.current.focus();
@@ -144,7 +133,7 @@ export default function ChatbotWidget() {
 
       if (!res.ok || !res.body) {
         const data = await res.json();
-        setError(data.error || "Something went wrong. Try again?");
+        setError(data.detail ? `${data.error}\n${data.detail}` : data.error || "Something went wrong. Try again?");
         setMessages((prev) => prev.slice(0, -1));
         setLoading(false);
         return;
@@ -169,7 +158,9 @@ export default function ChatbotWidget() {
           try {
             const parsed = JSON.parse(data);
             if (parsed.error) {
-              setError(parsed.error);
+              setError(parsed.detail ? `${parsed.error}\n${parsed.detail}` : parsed.error);
+              setMessages((prev) => prev.slice(0, -1));
+              setAssistantStream("");
               setLoading(false);
               return;
             }
@@ -178,17 +169,16 @@ export default function ChatbotWidget() {
               setAssistantStream(streamedText);
             }
           } catch {
-            // skip malformed lines
+            // Ignore malformed SSE chunks from upstream.
           }
         }
       }
 
       if (streamedText) {
-        setMessages((prev) => [
-          ...prev.slice(0, -1),
-          userMsg,
-          { role: "assistant", text: streamedText },
-        ]);
+        setMessages((prev) => [...prev.slice(0, -1), userMsg, { role: "assistant", text: streamedText }]);
+      } else {
+        setMessages((prev) => prev.slice(0, -1));
+        setError("The AI returned an empty response.");
       }
       setAssistantStream("");
     } catch {
@@ -209,7 +199,6 @@ export default function ChatbotWidget() {
 
   return (
     <>
-      {/* Floating chat bubble trigger */}
       <button
         onClick={handleOpen}
         aria-label="Open chat with Van Anh"
@@ -226,17 +215,15 @@ export default function ChatbotWidget() {
         )}
       </button>
 
-      {/* Chat panel — larger */}
       {open && (
         <div
           className="fixed bottom-24 right-4 sm:right-6 z-50 w-[95vw] sm:w-[600px] bg-white border border-brand-lightgrey shadow-2xl flex flex-col"
           style={{ height: "75vh", maxHeight: "800px" }}
         >
-          {/* Header */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-brand-lightgrey bg-brand-black shrink-0">
             <div>
               <div className="text-white font-semibold text-sm">Chat with Van Anh</div>
-              <div className="text-neutral-400 text-xs">Digital Twin of me</div>
+              <div className="text-neutral-400 text-xs">Grounded on portfolio data</div>
             </div>
             <button
               onClick={() => setOpen(false)}
@@ -249,17 +236,13 @@ export default function ChatbotWidget() {
             </button>
           </div>
 
-          {/* Messages area */}
           <div className="flex-1 overflow-y-auto px-6 py-5 bg-neutral-50">
-
-            {/* Welcome message — index 0 only */}
             {messages.length > 0 && (
               <div className="flex justify-start mb-3">
                 <AssistantBubble text={messages[0].text} />
               </div>
             )}
 
-            {/* Topic guide cards */}
             {messages.length === 1 && !loading && (
               <div className="mt-2">
                 <p className="text-xs text-brand-grey mb-2 font-medium">What can you ask me?</p>
@@ -275,13 +258,10 @@ export default function ChatbotWidget() {
                     </button>
                   ))}
                 </div>
-                <p className="text-xs text-brand-grey mt-3 text-center">
-                  Or just type your own question below ↓
-                </p>
+                <p className="text-xs text-brand-grey mt-3 text-center">Or just type your own question below.</p>
               </div>
             )}
 
-            {/* User + assistant messages */}
             {messages.slice(1).map((msg, i) => (
               <div
                 key={`msg-${i}`}
@@ -297,39 +277,27 @@ export default function ChatbotWidget() {
               </div>
             ))}
 
-            {/* Streaming reply — live text */}
             {loading && assistantStream && (
               <div className="flex justify-start mb-3">
                 <AssistantBubble text={assistantStream} />
               </div>
             )}
 
-            {/* Loading dots — shown while assistantStream is empty */}
             {loading && !assistantStream && (
               <div className="flex justify-start mb-3">
                 <div className="bg-white border border-brand-lightgrey rounded-2xl rounded-bl-md px-4 py-3 shadow-sm">
                   <div className={`flex gap-1 ${prefersReduced ? "" : "animate-bounce-root"}`}>
-                    <div
-                      className="w-1.5 h-1.5 bg-brand-red rounded-full"
-                      style={{ animationDelay: prefersReduced ? undefined : "0ms", animationPlayState: prefersReduced ? "paused" : undefined }}
-                    />
-                    <div
-                      className="w-1.5 h-1.5 bg-brand-red rounded-full"
-                      style={{ animationDelay: prefersReduced ? undefined : "150ms", animationPlayState: prefersReduced ? "paused" : undefined }}
-                    />
-                    <div
-                      className="w-1.5 h-1.5 bg-brand-red rounded-full"
-                      style={{ animationDelay: prefersReduced ? undefined : "300ms", animationPlayState: prefersReduced ? "paused" : undefined }}
-                    />
+                    <div className="w-1.5 h-1.5 bg-brand-red rounded-full" />
+                    <div className="w-1.5 h-1.5 bg-brand-red rounded-full" />
+                    <div className="w-1.5 h-1.5 bg-brand-red rounded-full" />
                   </div>
                 </div>
               </div>
             )}
 
-            {/* Error */}
             {error && (
               <div className="flex justify-start mb-3">
-                <div className="bg-red-50 border border-red-200 text-red-700 rounded-2xl rounded-bl-md px-4 py-2.5 text-sm">
+                <div className="max-w-[92%] whitespace-pre-wrap bg-red-50 border border-red-200 text-red-700 rounded-2xl rounded-bl-md px-4 py-2.5 text-sm">
                   {error}
                 </div>
               </div>
@@ -338,7 +306,6 @@ export default function ChatbotWidget() {
             <div ref={bottomRef} />
           </div>
 
-          {/* Suggestions */}
           {messages.length > 1 && !loading && (
             <div className="px-5 py-3 border-t border-brand-lightgrey bg-white shrink-0">
               <div className="flex flex-wrap gap-2">
@@ -355,7 +322,6 @@ export default function ChatbotWidget() {
             </div>
           )}
 
-          {/* Input */}
           <div className="px-4 py-3 border-t border-brand-lightgrey bg-white shrink-0">
             <div className="flex items-end gap-2">
               <textarea
