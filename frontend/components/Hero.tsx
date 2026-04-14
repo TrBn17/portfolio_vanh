@@ -3,12 +3,22 @@ import Image from "next/image";
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center bg-brand-black overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-brand-black via-neutral-900 to-neutral-800" />
+      {/* Background image */}
+      <Image
+        src="/assets/background.png"
+        alt=""
+        fill
+        className="object-cover opacity-20"
+        priority
+        unoptimized
+      />
+
+      {/* Gradient overlay for readability */}
+      <div className="absolute inset-0 bg-gradient-to-br from-brand-black via-neutral-900/80 to-neutral-800/70" />
 
       {/* Dot texture */}
       <div
-        className="absolute inset-0 opacity-5"
+        className="absolute inset-0 opacity-5 pointer-events-none"
         style={{
           backgroundImage: "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
           backgroundSize: "40px 40px",
@@ -82,6 +92,7 @@ export default function Hero() {
                 alt="Pham Thi Van Anh"
                 fill
                 className="object-cover"
+                priority
                 unoptimized
               />
             </div>
@@ -95,7 +106,7 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-neutral-500">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-neutral-500 pointer-events-none">
         <span className="text-xs tracking-widest uppercase">Scroll</span>
         <div className="w-px h-8 bg-neutral-600 animate-pulse" />
       </div>

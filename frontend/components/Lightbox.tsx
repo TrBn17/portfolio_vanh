@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect } from "react";
 
 type LightboxProps = {
@@ -9,7 +10,6 @@ type LightboxProps = {
 };
 
 export function Lightbox({ src, alt, onClose }: LightboxProps) {
-  // Close on Escape
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -39,11 +39,13 @@ export function Lightbox({ src, alt, onClose }: LightboxProps) {
         className="relative w-full max-w-5xl max-h-[85vh]"
         onClick={(e) => e.stopPropagation()}
       >
-        <img
+        <Image
           src={src}
           alt={alt}
-          className="max-w-full max-h-[85vh] object-contain rounded"
-          style={{ width: "auto", height: "auto" }}
+          width={1200}
+          height={800}
+          className="max-w-full max-h-[85vh] w-auto h-auto object-contain rounded"
+          unoptimized
         />
         <p className="text-white/60 text-sm text-center mt-3">{alt}</p>
       </div>
@@ -63,10 +65,13 @@ export function CampaignImageCard({ src, alt, onImageClick }: ImageCardProps) {
       className="relative h-44 w-full overflow-hidden bg-neutral-100 cursor-zoom-in group"
       onClick={onImageClick}
     >
-      <img
+      <Image
         src={src}
         alt={alt}
-        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        fill
+        className="object-cover transition-transform duration-500 group-hover:scale-105"
+        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        unoptimized
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-3">
         <span className="text-white text-xs font-semibold flex items-center gap-1">

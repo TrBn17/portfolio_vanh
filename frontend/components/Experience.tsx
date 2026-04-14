@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
+import { Lightbox } from "./Lightbox";
 
 const EXPERIENCES = [
   {
@@ -116,8 +118,16 @@ const EXPERIENCES = [
 ];
 
 export default function Experience() {
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+  const [lightboxAlt, setLightboxAlt] = useState("");
+
   return (
-    <section id="experience" className="py-24 bg-brand-offwhite">
+    <>
+      {lightboxSrc && (
+        <Lightbox src={lightboxSrc} alt={lightboxAlt} onClose={() => setLightboxSrc(null)} />
+      )}
+
+      <section id="experience" className="py-24 bg-brand-offwhite">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="mb-12">
           <span className="text-brand-red text-xs font-semibold tracking-widest uppercase">
@@ -134,20 +144,36 @@ export default function Experience() {
               key={exp.id}
               className="bg-white border border-brand-lightgrey hover:border-brand-red transition-colors overflow-hidden"
             >
-              {/* Full-width image banner at top */}
+              {/* Full-width image banner at top — click to enlarge */}
               {exp.image && (
-                <div className="relative w-full" style={{ height: "220px" }}>
+                <div
+                  className="relative w-full cursor-zoom-in group"
+                  style={{ height: "220px" }}
+                  onClick={() => {
+                    setLightboxSrc(exp.image!);
+                    setLightboxAlt(`${exp.company} — ${exp.role}`);
+                  }}
+                >
                   <Image
                     src={exp.image}
                     alt={`${exp.company} work`}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 800px"
                     unoptimized
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-brand-black/60 to-transparent" />
                   <div className="absolute bottom-4 left-6">
                     <div className="text-white text-xl font-serif font-bold">{exp.company}</div>
                     <div className="text-white/80 text-sm">{exp.role}</div>
+                  </div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                    <span className="text-white/0 group-hover:text-white/80 text-xs font-semibold flex items-center gap-1 transition-all">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                      </svg>
+                      Click to enlarge
+                    </span>
                   </div>
                 </div>
               )}
@@ -272,5 +298,6 @@ export default function Experience() {
         </div>
       </div>
     </section>
+    </>
   );
 }

@@ -12,7 +12,7 @@ export default function Footer() {
           </a>
 
           <p className="text-xs text-neutral-500">
-            © {year} Pham Thi Van Anh. All rights reserved.
+            © {year} Pham Thi Van Anh
           </p>
 
           <div className="flex items-center gap-6">
