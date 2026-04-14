@@ -70,7 +70,7 @@ Open `.env.local` and fill in:
 
 ```bash
 OPENROUTER_API_KEY=your_api_key_here
-OPENROUTER_MODEL=gpt-oss-120b
+OPENROUTER_MODEL=gpt-oss-20b
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
@@ -90,6 +90,41 @@ Open [http://localhost:3000](http://localhost:3000)
 npm run build
 npm start
 ```
+
+## Deploy To Vercel
+
+The repo is configured so Vercel can build from the repository root without needing `Root Directory` in `vercel.json`.
+
+### 1. Import the repository
+
+- Create a new Vercel project from this Git repository
+- Keep the detected framework as `Next.js`
+- Leave `Root Directory` empty unless you want to set it manually in the Vercel dashboard
+
+### 2. Add environment variables in Vercel
+
+Set these in `Project Settings -> Environment Variables`:
+
+```bash
+OPENROUTER_API_KEY=your_openrouter_key
+OPENROUTER_MODEL=gpt-oss-20b
+NEXT_PUBLIC_SITE_URL=https://your-domain.vercel.app
+```
+
+Notes:
+
+- `OPENROUTER_API_KEY` is required or the chatbot route will return `503`
+- `OPENROUTER_MODEL` is optional; if omitted, the app defaults to `gpt-oss-20b`
+- `NEXT_PUBLIC_SITE_URL` is recommended for canonical metadata, but the chat route can also fall back to the current request origin
+
+### 3. Deploy
+
+After the first deploy, test:
+
+- `/` loads correctly
+- the chat widget opens
+- asking a portfolio question returns an answer
+- asking an off-topic question returns a grounded fallback instead of a hallucinated answer
 
 ---
 

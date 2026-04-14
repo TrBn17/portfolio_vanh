@@ -1,10 +1,6 @@
 import { NextRequest } from "next/server";
 import { buildGroundedPrompt } from "@/lib/portfolio-data";
 
-export const runtime = "edge";
-
-// ─── Helpers ────────────────────────────────────────────────────────────────────
-
 function json(body: Record<string, unknown>, status: number) {
   return new Response(JSON.stringify(body), {
     status,
@@ -12,12 +8,10 @@ function json(body: Record<string, unknown>, status: number) {
   });
 }
 
-// ─── Handler ───────────────────────────────────────────────────────────────────
-
 export async function POST(req: NextRequest) {
-  // Parse body
   let message: string;
   let model: string | undefined;
+
   try {
     const body = await req.json();
     ({ message, model } = body);
@@ -31,24 +25,28 @@ export async function POST(req: NextRequest) {
 
   const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey) {
-    return json({ error: "OpenRouter API key not configured. Set OPENROUTER_API_KEY in .env.local." }, 503);
+    return json(
+      { error: "OpenRouter API key not configured. Set OPENROUTER_API_KEY in .env.local." },
+      503
+    );
   }
 
   const modelId = model || process.env.OPENROUTER_MODEL || "gpt-oss-20b";
   const groundedPrompt = buildGroundedPrompt(message);
   const encoder = new TextEncoder();
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim() || req.nextUrl.origin;
 
-  // Stream response from OpenRouter
   const stream = new ReadableStream({
     async start(controller) {
       let upstreamRes: Response;
+
       try {
         upstreamRes = await fetch("https://openrouter.ai/api/v1/chat/completions", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${apiKey}`,
-            "HTTP-Referer": process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+            "HTTP-Referer": siteUrl,
             "X-Title": "Van Anh Portfolio Assistant",
           },
           body: JSON.stringify({
@@ -59,22 +57,28 @@ export async function POST(req: NextRequest) {
             stream: true,
           }),
         });
-      } catch (err) {
-        console.error("Upstream fetch error:", err);
-        controller.enqueue(encoder.encode(`data: ${JSON.stringify({ error: "Failed to reach OpenRouter." })}\n\n`));
+      } catch (error) {
+        console.error("Upstream fetch error:", error);
+        controller.enqueue(
+          encoder.encode(`data: ${JSON.stringify({ error: "Failed to reach OpenRouter." })}\n\n`)
+        );
         controller.close();
         return;
       }
 
       if (!upstreamRes.ok) {
         const detail = await upstreamRes.text();
-        controller.enqueue(encoder.encode(`data: ${JSON.stringify({ error: "AI request failed.", detail })}\n\n`));
+        controller.enqueue(
+          encoder.encode(`data: ${JSON.stringify({ error: "AI request failed.", detail })}\n\n`)
+        );
         controller.close();
         return;
       }
 
       if (!upstreamRes.body) {
-        controller.enqueue(encoder.encode(`data: ${JSON.stringify({ error: "Empty response from AI." })}\n\n`));
+        controller.enqueue(
+          encoder.encode(`data: ${JSON.stringify({ error: "Empty response from AI." })}\n\n`)
+        );
         controller.close();
         return;
       }
@@ -86,31 +90,41 @@ export async function POST(req: NextRequest) {
       try {
         while (true) {
           const { done, value } = await reader.read();
-          if (done) break;
+          if (done) {
+            break;
+          }
 
           buffer += decoder.decode(value, { stream: true });
           const lines = buffer.split("\n");
           buffer = lines.pop() ?? "";
 
           for (const line of lines) {
-            if (!line.startsWith("data: ")) continue;
+            if (!line.startsWith("data: ")) {
+              continue;
+            }
+
             const data = line.slice(6).trim();
-            if (data === "[DONE]") continue;
+            if (data === "[DONE]") {
+              continue;
+            }
 
             try {
               const parsed = JSON.parse(data);
               const chunk = parsed.choices?.[0]?.delta?.content ?? "";
+
               if (chunk) {
                 controller.enqueue(encoder.encode(`data: ${JSON.stringify({ chunk })}\n\n`));
               }
             } catch {
-              // skip malformed SSE lines
+              // Ignore malformed SSE lines from the upstream provider.
             }
           }
         }
-      } catch (err) {
-        console.error("Stream read error:", err);
-        controller.enqueue(encoder.encode(`data: ${JSON.stringify({ error: "Stream interrupted." })}\n\n`));
+      } catch (error) {
+        console.error("Stream read error:", error);
+        controller.enqueue(
+          encoder.encode(`data: ${JSON.stringify({ error: "Stream interrupted." })}\n\n`)
+        );
       }
 
       controller.enqueue(encoder.encode("data: [DONE]\n\n"));
