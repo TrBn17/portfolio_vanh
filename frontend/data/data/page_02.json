@@ -1,0 +1,42 @@
+{
+  "page": 2,
+  "file": "Education.png",
+  "section_type": "education",
+  "title": "Education",
+  "subtitle": "Academic Background & Certifications",
+  "content": {
+    "paragraphs": [],
+    "bullets": [
+      "MSc in Marketing Management & Digital — ESSEC Business School (2025–2026) — Admitted with scholarship; QS Business Master's Ranking #2; GPA: 17.22/20",
+      "Bachelor of International Communication & Culture — Diplomatic Academy of Vietnam (2020–2023) — GPA: 3.62/4.0, Top 5%",
+      "MA in International Communications — Diplomatic Academy of Vietnam (2021–2024) — Top 2/200 cohort",
+      "Marketing Course — Case Master — Tomorrow Marketers (2023–2024)",
+      "Business & Marketing Certification — University of Pennsylvania (2023)",
+      "Viral Marketing & How to Craft Contagious Content — Udemy (2023)",
+      "The Complete Digital Marketing Guide — Udemy (2022)"
+    ],
+    "labels": ["ESSEC", "DAV", "Top 5%", "Scholarship", "Top 2/200"],
+    "metrics": [
+      { "label": "GPA (MSc)", "value": "17.22/20" },
+      { "label": "GPA (BA)", "value": "3.62/4.0" },
+      { "label": "Class Rank (MA)", "value": "Top 2/200" }
+    ]
+  },
+  "entities": {
+    "companies": [],
+    "brands": [],
+    "people": [],
+    "locations": ["Singapore", "Vietnam"],
+    "dates": ["2020–2023", "2021–2024", "2023", "2025–2026"]
+  },
+  "campaign": null,
+  "design": {
+    "layout": "Timeline or card-based layout",
+    "components": ["Degree titles", "Institutions", "Years", "Honours badges"],
+    "visual_style": "Clean, structured, academic",
+    "color_palette": ["Black", "White", "Grey", "Red accent"],
+    "typography": "Clean sans-serif; bold for institution names",
+    "image_type": "text-heavy"
+  },
+  "summary": "Education page showing Van Anh's academic progression from bachelor's at the Diplomatic Academy of Vietnam (GPA 3.62, Top 5%) to MSc at ESSEC Business School (scholarship, QS #2 ranking) with additional professional certifications in marketing."
+}

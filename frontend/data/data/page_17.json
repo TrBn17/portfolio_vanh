@@ -1,0 +1,53 @@
+{
+  "page": 17,
+  "file": "Glaze's new product launching campaign.png",
+  "section_type": "campaign",
+  "title": "Glaze — New Product Launch",
+  "subtitle": "Growth & Launch Campaign | 2023",
+  "content": {
+    "paragraphs": [
+      "Multi-product launch framework combining Instagram and TikTok growth strategy, B2B partnership development, and event amplification. A scalable campaign structure designed for consumer product launches across categories."
+    ],
+    "bullets": [
+      "Developed phased launch strategy: pre-launch teaser on TikTok → launch week Instagram takeover → B2B partnership seeding → event amplification",
+      "Built launch timeline and social media content calendar aligned with product milestones",
+      "Designed B2B partnership outreach framework for distribution and co-marketing",
+      "Created social media growth strategy targeting early adopters and brand advocates",
+      "Developed event amplification plan to convert early adopters into brand ambassadors",
+      "Established KPI dashboard for launch performance measurement"
+    ],
+    "labels": ["Glaze", "New Product Launch", "Growth", "Instagram", "TikTok"],
+    "metrics": []
+  },
+  "entities": {
+    "companies": ["Glaze"],
+    "brands": ["Glaze"],
+    "people": [],
+    "locations": [],
+    "dates": ["2023"]
+  },
+  "campaign": {
+    "name": "Glaze New Product Launch",
+    "objective": "Build rapid brand awareness and early adopter community for a new consumer product with a scalable multi-channel launch framework",
+    "target_audience": "Early adopters, trend-conscious consumers, social media-engaged demographic",
+    "insight": "A phased launch (tease → launch → partner → amplify) creates compounding momentum — each phase feeds the next, turning early adopters into brand ambassadors",
+    "strategy": [
+      "Pre-launch TikTok teaser content to build anticipation",
+      "Launch week Instagram takeover for product reveal",
+      "B2B partnership seeding for distribution and co-marketing",
+      "Event amplification to convert early adopters into brand ambassadors",
+      "KPI dashboard for cross-channel performance tracking"
+    ],
+    "channels": ["TikTok", "Instagram", "B2B Partnerships", "Events", "Email"],
+    "results": ["Launch timeline and content calendar", "Social media growth strategy", "B2B outreach framework", "Event amplification plan", "KPI dashboard"]
+  },
+  "design": {
+    "layout": "Launch campaign case study with timeline",
+    "components": ["Campaign phases", "Channel strategy", "KPI dashboard reference", "Partner framework"],
+    "visual_style": "Modern, product-focused, energetic",
+    "color_palette": ["Black", "White", "Coral/Orange", "Grey"],
+    "typography": "Bold sans-serif; clear phase labels",
+    "image_type": "mockup"
+  },
+  "summary": "Glaze new product launch campaign — scalable multi-phase framework (TikTok teaser → Instagram launch → B2B seeding → event amplification) with KPI dashboard for consumer product launches."
+}

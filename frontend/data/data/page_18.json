@@ -1,0 +1,53 @@
+{
+  "page": 18,
+  "file": "lauinching airport's food pop up store.png",
+  "section_type": "campaign",
+  "title": "Last Bite Best Bite",
+  "subtitle": "Airport Food MVP Brand Launch | 2023",
+  "content": {
+    "paragraphs": [
+      "MVP concept and launch campaign for an airport food brand focused on authentic local cuisine positioned for transit travellers. Developed brand identity, product positioning around 'authentic value,' and local food pop-up activation strategy."
+    ],
+    "bullets": [
+      "Named the brand and developed core brand identity for airport food positioning",
+      "Positioned the brand around the concept that the last food experience before a journey is often the most memorable",
+      "Built pop-up activation concept to test MVP in high-footfall airport environment",
+      "Developed authentic local cuisine positioning to differentiate from generic airport food",
+      "Designed traveller engagement framework for a high-speed, low-engagement transit environment",
+      "Created brand story architecture that transforms routine transit eating into a mini-culinary adventure"
+    ],
+    "labels": ["Airport Food", "MVP", "Local Cuisine", "Brand Identity", "Pop-up"],
+    "metrics": []
+  },
+  "entities": {
+    "companies": [],
+    "brands": [],
+    "people": [],
+    "locations": ["Vietnam"],
+    "dates": ["2023"]
+  },
+  "campaign": {
+    "name": "Last Bite Best Bite",
+    "objective": "Create a memorable airport food brand experience in a high-speed transit environment that transforms routine eating into a culinary moment",
+    "target_audience": "Transit travellers at Vietnamese airports seeking authentic local food experiences before or between flights",
+    "insight": "The last food experience before a journey carries emotional weight — travellers seek memorable moments to cap their trip. Positioning authentic local cuisine as the 'final highlight' differentiates from generic airport food",
+    "strategy": [
+      "Build brand identity around the 'last bite is the best bite' concept",
+      "Pop-up activation in high-footfall airport location to test MVP",
+      "Authentic local cuisine positioning as differentiator from standard airport offerings",
+      "Traveller engagement framework optimized for short dwell times",
+      "Brand story architecture transforming transit eating into mini-culinary adventure"
+    ],
+    "channels": ["Pop-up Store", "Airport Retail", "Social Media", "Word of Mouth"],
+    "results": ["Brand identity and naming", "MVP product strategy", "Pop-up activation concept", "Brand story and positioning", "Traveller engagement framework"]
+  },
+  "design": {
+    "layout": "Brand concept and MVP case study",
+    "components": ["Brand name and identity", "MVP concept", "Pop-up activation mockup", "Brand positioning"],
+    "visual_style": "Warm, food-forward, local and authentic",
+    "color_palette": ["Black", "White", "Warm Orange", "Natural Green"],
+    "typography": "Friendly bold sans-serif; warm feel",
+    "image_type": "mockup"
+  },
+  "summary": "'Last Bite Best Bite' airport food MVP brand concept — brand identity, authentic local cuisine positioning, and pop-up activation strategy targeting transit travellers seeking memorable culinary moments."
+}

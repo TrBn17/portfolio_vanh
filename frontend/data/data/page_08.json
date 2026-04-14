@@ -1,0 +1,44 @@
+{
+  "page": 8,
+  "file": "Darkhorsestocks_2.png",
+  "section_type": "experience",
+  "title": "DarkHorseStocks — Campaign Strategy",
+  "subtitle": "Multi-Channel Outreach & Community Building",
+  "content": {
+    "paragraphs": [
+      "Detailed breakdown of multi-channel digital marketing strategy execution at DarkHorseStocks, covering community management, content strategy, data-driven reporting, and infrastructure development for a fintech investment analytics platform."
+    ],
+    "bullets": [
+      "Directed multi-channel digital marketing strategy across email, LinkedIn, social media, Telegram, and WhatsApp",
+      "Built and maintained content calendar aligned with product launch cycles",
+      "Developed automated reporting dashboards tracking engagement, conversion, and subscriber growth KPIs",
+      "Managed marketing budget allocation across paid and organic channels",
+      "Leveraged WhatsApp API network (35k+) for direct marketing distribution and community engagement",
+      "Coordinated cross-functional alignment between content, growth, and product teams"
+    ],
+    "labels": ["Content Calendar", "Marketing Automation", "Dashboard Reporting", "Community Management"],
+    "metrics": [
+      { "label": "LinkedIn Subscribers", "value": "46k+" },
+      { "label": "WhatsApp Network", "value": "35k+" },
+      { "label": "Social Platforms", "value": "5" },
+      { "label": "Duration", "value": "1 year" }
+    ]
+  },
+  "entities": {
+    "companies": ["DarkHorseStocks"],
+    "brands": ["DarkHorseStocks"],
+    "people": [],
+    "locations": ["Singapore", "India"],
+    "dates": ["Jul 2024", "Jul 2025"]
+  },
+  "campaign": null,
+  "design": {
+    "layout": "Strategy breakdown with channel icons",
+    "components": ["Section header", "Channel list", "Strategy bullets", "Dashboard reference"],
+    "visual_style": "Analytical, structured, process-oriented",
+    "color_palette": ["Black", "White", "Teal/Green", "Grey"],
+    "typography": "Sans-serif; channel names bold",
+    "image_type": "text-heavy"
+  },
+  "summary": "DarkHorseStocks campaign strategy page detailing multi-channel outreach approach across 5 platforms (LinkedIn, WhatsApp, Telegram, Instagram, Twitter), automated reporting dashboards, and content calendar management."
+}
