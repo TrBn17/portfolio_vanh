@@ -30,6 +30,11 @@ frontend/.env.development
 frontend/.env.production
 frontend/.env*.local
 *.pem
+frontend/public/projects/Soirée_by_SEPHORA_2026.pdf
+frontend/public/projects/TicTac Full Version_2026.pdf
+frontend/public/projects/File_2026.pdf
+frontend/public/projects/VietJet_2022.pdf
+frontend/public/projects/Violent Communication_2023.pdf
 
 # Vercel / misc build artifacts
 .vercel/

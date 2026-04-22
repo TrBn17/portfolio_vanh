@@ -76,6 +76,7 @@ export default function ChatbotWidget() {
   const [error, setError] = useState<string | null>(null);
   const [streamingText, setStreamingText] = useState("");
   const [sessionStarted, setSessionStarted] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   const bottomRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -213,8 +214,8 @@ export default function ChatbotWidget() {
 
       {open && (
         <div
-          className="fixed bottom-24 right-4 sm:right-6 z-50 flex w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border border-brand-lightgrey bg-white shadow-[0_24px_80px_rgba(0,0,0,0.18)] sm:w-[440px]"
-          style={{ height: "min(68vh, 720px)" }}
+          className="fixed bottom-24 right-4 sm:right-6 z-50 flex w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border border-brand-lightgrey bg-white shadow-[0_24px_80px_rgba(0,0,0,0.18)] sm:w-[440px] transition-all duration-300"
+          style={{ height: expanded ? "min(90vh, 900px)" : "min(68vh, 720px)" }}
         >
           <div className="flex shrink-0 items-center justify-between bg-brand-black px-6 py-4">
             <div className="flex items-center gap-3">
@@ -243,6 +244,21 @@ export default function ChatbotWidget() {
                 <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
                 </svg>
+              </button>
+              <button
+                onClick={() => setExpanded((v) => !v)}
+                className="p-1 text-neutral-400 transition-colors hover:text-white"
+                aria-label={expanded ? "Collapse chat" : "Expand chat"}
+              >
+                {expanded ? (
+                  <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 9V4.5M9 9H4.5M9 9L3.75 3.75M9 15h4.5M9 15v4.5M9 15L3.75 20.25M15 9h4.5M15 9V4.5M15 9L20.25 3.75M15 15h4.5M15 15v4.5M15 15l4.5 4.5" />
+                  </svg>
+                ) : (
+                  <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 8V4m0 0H4M4 4l5 5m11-1V4m0 0v4m0-4h-4m4 0l5 5m-11-5h4m-4 0v4m0-4l-5 5" />
+                  </svg>
+                )}
               </button>
             </div>
           </div>

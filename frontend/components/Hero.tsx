@@ -235,7 +235,7 @@ export default function Hero() {
             {/* Portrait */}
             <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-brand-red shadow-[0_40px_120px_rgba(200,16,46,0.22)] float-subtle">
               <Image
-                src="/assets/Van_Anh.png"
+                src="/avt/Van_Anh.png"
                 alt="Pham Thi Van Anh"
                 fill
                 className="object-cover"

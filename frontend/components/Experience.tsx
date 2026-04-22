@@ -9,23 +9,19 @@ import AnimateIn from "./AnimateIn";
 type ExperienceGalleryItem = {
   src: string;
   label: string;
-  position?: string;
 };
 
 const EXPERIENCE_IMAGE_MAP: Record<string, ExperienceGalleryItem[]> = {
-  ferrero: [],
+  ferrero: [{ src: "/logo/ferrero.png", label: "Ferrero logo" }],
   darkhorse: [
-    { src: "/assets/Darkhorsestocks_1.png", label: "Social media growth", position: "center center" },
-    { src: "/assets/Darkhorsestocks_2.png", label: "Email marketing", position: "center center" },
+    { src: "/logo/DarkHorseStocks.png", label: "DarkHorseStocks logo" },
   ],
   uniqlo: [
-    { src: "/assets/Pro_experienve.png", label: "UNIQLO timeline", position: "12% center" },
+    { src: "/logo/uniqlo.png", label: "UNIQLO logo" },
   ],
   dell: [
-    { src: "/assets/Work_exp_Dell_tech2.png", label: "Results highlight", position: "center center" },
-    { src: "/assets/Work_exp_Dell_tech.png", label: "Data processing", position: "center center" },
+    { src: "/logo/Dell_technologies.png", label: "Dell Technologies logo" },
   ],
-  "us-asean": [],
 };
 
 type ExperienceRecord = (typeof portfolioData.experience)[number];
@@ -64,34 +60,29 @@ function ExpImageReveal({
   return (
     <div
       onClick={() => onLightbox(image.src, `${company} — ${role}`)}
-      className="relative block w-full cursor-zoom-in group overflow-hidden bg-[#111111] text-left exp-image-wrap"
-      style={{ height: "clamp(260px, 42vw, 420px)" }}
+      className="relative block w-full cursor-zoom-in group overflow-hidden bg-white text-left exp-image-wrap border-b border-brand-lightgrey"
+      style={{ height: "clamp(180px, 24vw, 240px)" }}
     >
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 flex items-center justify-center p-6 md:p-8">
         <Image
           src={image.src}
-          alt={`${company} portfolio visual`}
+          alt={`${company} logo`}
           fill
-          className="object-cover transition-transform duration-700 scale-100 group-hover:scale-[1.03]"
-          style={{ objectPosition: image.position ?? "center center" }}
+          className="object-contain transition-transform duration-500 scale-100 group-hover:scale-[1.02]"
           sizes="(max-width: 1024px) 100vw, 1200px"
           unoptimized
         />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-r from-brand-black/78 via-brand-black/30 to-brand-black/10" />
-      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-400">
-        <div className="w-14 h-14 bg-brand-red/90 rounded-full flex items-center justify-center">
+      <div className="absolute inset-0 bg-gradient-to-t from-brand-black/8 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="w-12 h-12 bg-brand-red/90 rounded-full flex items-center justify-center">
           <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
           </svg>
         </div>
       </div>
-      <div className="absolute left-6 right-6 bottom-5 flex items-end justify-between gap-4">
-        <div>
-          <div className="text-white text-xl md:text-2xl font-serif font-bold">{company}</div>
-          <div className="text-white/85 text-sm md:text-base">{role}</div>
-        </div>
-        <div className="hidden md:block text-[11px] uppercase tracking-[0.2em] text-white/75">
+      <div className="absolute right-4 bottom-3">
+        <div className="hidden md:block text-[11px] uppercase tracking-[0.2em] text-brand-grey">
           Click to expand
         </div>
       </div>
@@ -128,20 +119,6 @@ export default function Experience() {
         .sort((a, b) => parseStartDate(b.period) - parseStartDate(a.period)),
     []
   );
-
-  useEffect(() => {
-    const dellImages = EXPERIENCE_IMAGE_MAP.dell ?? [];
-    if (dellImages.length < 2) return;
-
-    const interval = window.setInterval(() => {
-      setSelectedVisuals((current) => ({
-        ...current,
-        dell: ((current.dell ?? 0) + 1) % dellImages.length,
-      }));
-    }, 2600);
-
-    return () => window.clearInterval(interval);
-  }, []);
 
   return (
     <section id="experience" className="py-24 bg-brand-offwhite overflow-hidden">
@@ -204,7 +181,6 @@ export default function Experience() {
                               }`}
                             >
                               {image.label}
-                              {exp.id === "dell" && imageIndex === selectedIndex ? " • Auto" : ""}
                             </button>
                           ))}
                         </div>

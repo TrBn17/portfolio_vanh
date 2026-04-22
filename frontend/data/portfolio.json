@@ -279,24 +279,6 @@
         }
       ],
       "logo": null
-    },
-    {
-      "id": "us-asean",
-      "company": "US-ASEAN Business Council",
-      "role": "PR & Communications Coordinator",
-      "period": "Jan 2022 – Apr 2022",
-      "duration": "4 months",
-      "type": "Contract",
-      "location": "Vietnam",
-      "description": "Coordinated public relations and communications for a US government-affiliated trade association operating across Southeast Asia.",
-      "highlights": [
-        "Managed communications strategy for regional trade initiatives",
-        "Coordinated event logistics for cross-border business forums",
-        "Produced communications materials for member companies and media",
-        "Liaised with diplomatic contacts and international business stakeholders"
-      ],
-      "metrics": [],
-      "logo": null
     }
   ],
   "results": [
@@ -425,10 +407,7 @@
         "Social media content calendar",
         "KOL/influencer activation plan"
       ],
-      "images": [
-        "assets/page14_1319.jpeg",
-        "assets/page14_1231.jpeg"
-      ],
+      "pdfFile": "Loreal_2026.pdf",
       "pageNumbers": [
         14
       ],
@@ -450,10 +429,7 @@
         "Retail partnership framework",
         "Campaign metrics and KPIs"
       ],
-      "images": [
-        "assets/page15_1432.jpeg",
-        "assets/page15_1434.jpeg"
-      ],
+      "pdfFile": "ABinBev_ 2022.pdf",
       "pageNumbers": [
         15
       ],
@@ -476,10 +452,7 @@
         "In-app notification strategy",
         "Campaign analytics framework"
       ],
-      "images": [
-        "assets/page16_1489.jpeg",
-        "assets/page16_1501.jpeg"
-      ],
+      "pdfFile": "MOMO_2023.pdf",
       "pageNumbers": [
         16
       ],
@@ -501,10 +474,7 @@
         "Scenario-based response guides",
         "Training material outline"
       ],
-      "images": [
-        "assets/page17_1622.jpeg",
-        "assets/page17_1642.jpeg"
-      ],
+      "pdfFile": "Violent Communication_2023.pdf",
       "pageNumbers": [
         17
       ],
@@ -527,10 +497,7 @@
         "Visual direction and moodboard",
         "Gifting season activation plan"
       ],
-      "images": [
-        "assets/page18_1863.jpeg",
-        "assets/page18_1869.jpeg"
-      ],
+      "pdfFile": "DYSON_2025.pdf",
       "pageNumbers": [
         18
       ],
@@ -553,10 +520,7 @@
         "Campaign performance metrics",
         "User-generated content strategy"
       ],
-      "images": [
-        "assets/page19_2022.jpeg",
-        "assets/page19_2027.jpeg"
-      ],
+      "pdfFile": "StylebyPNJ_2023.pdf",
       "pageNumbers": [
         19
       ],
@@ -579,10 +543,7 @@
         "Event amplification plan",
         "KPI dashboard"
       ],
-      "images": [
-        "assets/page20_2112.jpeg",
-        "assets/page20_2137.jpeg"
-      ],
+      "pdfFile": "TicTac Full Version_2026.pdf",
       "pageNumbers": [
         20
       ],
@@ -605,10 +566,7 @@
         "Authentic local cuisine positioning",
         "Traveller engagement framework"
       ],
-      "images": [
-        "assets/page21_2254.jpeg",
-        "assets/page21_2267.jpeg"
-      ],
+      "pdfFile": "VietJet_2022.pdf",
       "pageNumbers": [
         21
       ],
@@ -631,10 +589,7 @@
         "Personalisation strategy",
         "Luxury brand communication guidelines"
       ],
-      "images": [
-        "assets/page22_2509.jpeg",
-        "assets/page22_2524.png"
-      ],
+      "pdfFile": "NFT_Eazy Empire_2023.pdf",
       "pageNumbers": [
         22
       ],
