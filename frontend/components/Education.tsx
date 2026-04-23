@@ -102,7 +102,7 @@ function EducationCard({ edu, index }: { edu: EduRecord; index: number }) {
 export default function Education() {
   // Filter out Udemy entries — they're not main education entries
   const education = portfolioData.education.filter(
-    (e) => !e.institution.toLowerCase().includes("udemy")
+    (e) => !e.institution.toLowerCase().includes("udemy") && e.id !== "ma-ic"
   );
 
   return (
